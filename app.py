@@ -6,12 +6,11 @@ import time
 ## Function to generate response
 
 def getLLMResponse(input_text, no_of_words, article_type):
-    ## LLama2 Model GGML
+    ## LLama2 Model gguf
     llm = CTransformers(model="TheBloke/Llama-2-7B-Chat-GGUF",
                         config={'max_new_tokens': 4096, 'temperature': 0.07, 'context_length': 4096})
     
     ## Prompt Template
-    
     prompt_template = """
     You are capable of writing the blog, research abstract and technical documents.
     Write a {article_type} on topic {input_text} with only max {no_of_words} number of words.
@@ -53,6 +52,5 @@ def stream_data(response):
 
 if submit:   
     st.write_stream(stream_data(getLLMResponse(input_text, no_of_words, article_type)))
-
 
 st.write("Made with Love by **Harsh** :sunglasses:")
